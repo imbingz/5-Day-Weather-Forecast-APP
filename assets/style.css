@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+main ul li.sample-city a {
+	font-size: 1.1rem;
+	line-height: 2.3rem;
+}
+
+.card.main-display {
+	margin: 10px;
+}
+
+h5.forecast-title {
+	margin: 0 8px;
+}
+
+.row .col.l5ths {
+	width: 20%;
+}
+
+@media only screen and (max-width: 600px) {
+	header a.brand-logo {
+		font-size: 1.7rem;
+	}
+
+	.row .col.l5ths {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	.card.forecast {
+		margin-left: 10px;
+	}
+}
