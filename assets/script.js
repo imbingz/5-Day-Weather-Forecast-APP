@@ -10,4 +10,36 @@
 // add event listener on ul of search - hisroty -city list (use $(this)) )
 // - use data-city value as queryterm to make a call
 
-// /* BUILD QUERY URL 
+/* BUILD QUERY URL ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+// Forecast URL
+
+function buildForcastQuery() {
+	var baseURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
+	var apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+	var queryCity = $('#cityInput').val().trim();
+	var units = 'imperial';
+	var queryURL = baseURL + queryCity + '&units=' + units + '&APPID=' + apiKey;
+	return queryURL;
+}
+
+
+
+
+/* CLICK HANDLER ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+$('#searchBtn').on('click', function(event) {
+	event.preventDefault();
+
+	clear();
+
+	$.ajax({
+		url: buildCurrentQuery(),
+		method: 'GET'
+	}).then(updateCurrentWeather);
+
+	$.ajax({
+		url: buildForcastQuery(),
+		method: 'GET'
+	}).then(updateForecastPage);
+});
