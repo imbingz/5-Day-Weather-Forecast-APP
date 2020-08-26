@@ -31,6 +31,42 @@ function buildForcastQuery() {
 
 /* UPDATE PAGE ---------------------------------------------------------------------------------------------------------------------------------------------------- */
 
+//Current Weather Update
+
+function updateCurrentWeather(cwData) {
+	var apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+	let cityName = cwData.name;
+	let currentDate = moment().format('MM/DD/YYYY');
+	let iconCode = cwData.weather[0].icon;
+	let iconURL = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+	let temp = cwData.main.temp;
+	let humidity = cwData.main.humidity;
+	let windSpeed = cwData.wind.speed;
+	let lon = cwData.coord.lon;
+	let lat = cwData.coord.lat;
+
+	let uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+
+	$.ajax({
+		url: uvQueryURL,
+		mathod: 'GET'
+	}).then(function(uvData) {
+		let uvIndex = uvData.value;
+		let currentDay = `
+      <div class="card card-panel">
+        <h3 class="card-title" id='cityName'>${cityName} <span id="date"> ${currentDate} </span> <img id="wicon" src="${iconURL}" alt="Weather icon"></h3>
+        <p class="temperature">Temperature: <span id="temperature">${temp} &deg;F</span></p>
+        <p class="humidity">Humidity: <span id="humidity">${humidity}%</span></p>
+        <p class="windSpeed">Wind Speed: <span id="windSpeed">${windSpeed} MPH</span></p>
+        <p class="uv">UV Index: <span id="uv" class="red white-text">${uvIndex}</span></p>        
+      </div>
+    `;
+		$('#main-display').append(currentDay);
+	});
+}
+
+// 5-Day Forecast Update
+
 function updateForecastPage(wfData) {
 	for (let i = 1; i < wfData.list.length; i += 8) {
 		let year = wfData.list[i].dt_txt.slice(0, 4);
