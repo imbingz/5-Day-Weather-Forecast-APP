@@ -4,13 +4,14 @@
 // - display the current weahter information in main display area (make sure to clear the display )
 // - display 5 day forecact (using a for loop)
 
-//Store search history to local storage 
-// display the last search when refresh the app 
+//Store search history to local storage
+// display the last search when refresh the app
 
 // add event listener on ul of search - hisroty -city list (use $(this)) )
 // - use data-city value as queryterm to make a call
 
-/* BUILD QUERY URL ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+// /* BUILD QUERY URL ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
 // Current Weather URL
 
 function buildCurrentQuery() {
@@ -21,9 +22,6 @@ function buildCurrentQuery() {
 	var queryURL = baseURL + queryCity + '&units=' + units + '&APPID=' + apiKey;
 	return queryURL;
 }
-
-
-
 
 // Forecast URL
 
@@ -36,8 +34,6 @@ function buildForcastQuery() {
 	return queryURL;
 }
 
-
-
 /* UPDATE PAGE ---------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 //Current Weather Update
@@ -45,7 +41,7 @@ function buildForcastQuery() {
 function updateCurrentWeather(cwData) {
 	var apiKey = '3019514fb26959aff7eeb1e73e5aa725';
 	let cityName = cwData.name;
-	let currentDate = moment().format('MM/DD/YYYY');
+	let currentDate = moment().format('dddd, LLL');
 	let iconCode = cwData.weather[0].icon;
 	let iconURL = 'http://openweathermap.org/img/w/' + iconCode + '.png';
 	let temp = cwData.main.temp;
@@ -63,7 +59,8 @@ function updateCurrentWeather(cwData) {
 		let uvIndex = uvData.value;
 		let currentDay = `
       <div class="card card-panel">
-        <h3 class="card-title" id='cityName'>${cityName} <span id="date"> ${currentDate} </span> <img id="wicon" src="${iconURL}" alt="Weather icon"></h3>
+				<h3 class="card-title" id='cityName'>${cityName}<span><img id="wicon" src="${iconURL}" alt="Weather icon"></span>	</h3>
+				<p id="date"><small> ${currentDate} </small></p> 
         <p class="temperature">Temperature: <span id="temperature">${temp} &deg;F</span></p>
         <p class="humidity">Humidity: <span id="humidity">${humidity}%</span></p>
         <p class="windSpeed">Wind Speed: <span id="windSpeed">${windSpeed} MPH</span></p>
@@ -107,6 +104,13 @@ function updateForecastPage(wfData) {
 
 		$('#forecast-div').append(forecastDay);
 	}
+}
+
+/* CLEAR INPUT ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+function clear() {
+	$('#forecast-div').empty();
+	$('#main-display').empty();
 }
 
 /* CLICK HANDLER ---------------------------------------------------------------------------------------------------------------------------------------------------- */
