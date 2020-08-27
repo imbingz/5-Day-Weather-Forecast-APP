@@ -95,7 +95,7 @@ $(document).ready(function() {
 			}
 			// Display Current Weather Condition
 			let currentDay = `
-      <div class="card card-panel">
+      <div class="card card-panel current">
 				<h3 class="card-title" id='cityName'>${cityName}<span><img id="wicon" src="${iconURL}" alt="Weather icon"></span>	</h3>
 				<p id="date"><small> ${currentDate} </small></p> 
         <p class="temperature">Temperature: <span id="temperature">${temp} &deg;F</span></p>
