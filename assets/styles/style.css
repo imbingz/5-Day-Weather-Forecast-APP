@@ -9,9 +9,14 @@ body {
 	font-size: 16px;
 }
 
-main ul li.sample-city a {
+main ul li#savedCity {
 	font-size: 1.1rem;
 	line-height: 2.3rem;
+}
+
+main ul li#savedCity:hover {
+	background-color: #ede7f6;
+	cursor: pointer;
 }
 
 #main-display .current {
