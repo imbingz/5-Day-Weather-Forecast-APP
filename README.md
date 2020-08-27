@@ -1,22 +1,16 @@
 # 5-Day-Weather-Forecast-APP
 
-### Table of Content
-- [5-Day-Weather-Forecast-APP](#5-day-weather-forecast-app)
-    - [Table of Content](#table-of-content)
+   [Table of Content](#table-of-content)
     - [1. Links](#1-links)
-      - [Website Link](#website-link)
-      - [Work-Files Link](#work-files-link)
     - [2. Project Context - User Story](#2-project-context---user-story)
     - [3. Project Objectives](#3-project-objectives)
     - [4. Outcome](#4-outcome)
     - [5. Screenshots](#5-screenshots)
-      - [Screenshots - Mobile View](#screenshots---mobile-view)
-      - [Screenshots - Laptop view](#screenshots---laptop-view)
     - [6. Installation](#6-installation)
     - [7. Credits:](#7-credits)
     - [8. What I've Learned](#8-what-ive-learned)
     - [9. License](#9-license)
-        - [MIT License](#mit-license)
+       
 #
 <a name = "Links"></a>
 ### 1. Links 
@@ -61,10 +55,14 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 ####  Screenshots - Laptop view 
 <kbd>![screenshot-laptop](./assets/images/s1.png)</kbd>
 
+<a name="learned"></a>
+### 6. Challenges & What I've Learned
+* The challeng started with UI. I wanted to try a new framwork besides Bootstrap, so I used Materialize CSS for the first time. I used 9 col for large screen to display 5 sub-divided col. I could not achieve the result with Materialize grid system, so I used css to give each sub-col 20% of the fiull width of 9-col. 
+* Originally I made 3 separate api calls using ajax until I talked  about this issue with my tutor. He pointed me to Promise.all function for async call. 
 
 
 <a name="Installation"></a>
-### 6. Installation
+### 7. Installation
 * Access to GitHub.com and a code editor such as vscode is necessary
 * Go to [github.com/imbingz](https://github.com/imbingz/5-Day-Weather-Forecast-APP)
 * Click on the green button that says Clone or Download
@@ -73,9 +71,8 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 * Using Download ZIP: Click on Download Zip. Locate the file and double click it to unzip the file. Locate the unzipped folder and open it. All the files for the website will be within this folder. Click on index.html to open the website in the browser.
 * If you like to test this Weather Forecast App, please click the link [here](https://imbingz.github.io/5-Day-Weather-Forecast-APP/)
 
-
 <a name="Credits"></a>
-### 7. Credits:
+### 8. Credits:
 It is not possible to complete this project without the coding online communities and recources such as stackoverflow, mozilla developer network and the following teams. 
 
 
@@ -91,13 +88,6 @@ It is not possible to complete this project without the coding online communitie
 [YouTube - Build Weather APP with Weather Map API](https://www.youtube.com/watch?v=KT6Jaxl0JM4&list=PLAEoBV_GLyq4klW-2Pm75_5-r4oHhwqlm&index=4)
 [OpenWeather API](https://openweathermap.org/)
 [UV Index Levels](https://en.wikipedia.org/wiki/Ultraviolet_index#:~:text=A%20UV%20index%20reading%20of%203%20to%205%20means%20moderate,when%20the%20Sun%20is%20strongest.&text=A%20UV%20index%20reading%20of%206%20to%207%20means%20high,and%20eye%20damage%20is%20needed.)
-
-
-<a name="learned"></a>
-### 8. What I've Learned
-* Each project is a learning process for me. I used Materialize CSS for the first time and like the color class particularly while still learning more. 
-* I started to utilize template literals more and that makes some of the work ridiculously easy. 
-
 
 
 <a name="License"></a>
