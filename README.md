@@ -81,19 +81,19 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 It is not possible to complete this project without the coding online communities and recources such as stackoverflow.com, mozilla developer network and the following teams. 
 
 
-[Mozilla HTML5 Guide](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)<br>
-[w3 School CSS3](https://www.w3schools.com/css/css_intro.asp)<br>
-[Mozilla JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)<br>
-[JQuey API](https://api.jquery.com/)<br>
-[moment.js](https://momentjs.com/)<br>
-[Google Fonts](https://fonts.google.com/)<br>
-[Visual Studio Code](https://code.visualstudio.com/)<br>
-[w3 code validator](https://validator.w3.org/)<br>
-[Materialize CSS](https://materializecss.com/about.html)
-[YouTube - Build Weather APP with Weather Map API](https://www.youtube.com/watch?v=KT6Jaxl0JM4&list=PLAEoBV_GLyq4klW-2Pm75_5-r4oHhwqlm&index=4)
-[YouTube-How to Use New York Time API to Search Articles](https://www.youtube.com/watch?v=QiIlhmeGYuk)
-[OpenWeather API](https://openweathermap.org/)
-[UV Index Levels](https://en.wikipedia.org/wiki/Ultraviolet_index#:~:text=A%20UV%20index%20reading%20of%203%20to%205%20means%20moderate,when%20the%20Sun%20is%20strongest.&text=A%20UV%20index%20reading%20of%206%20to%207%20means%20high,and%20eye%20damage%20is%20needed.)
+* [Mozilla HTML5 Guide](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)<br>
+* [w3 School CSS3](https://www.w3schools.com/css/css_intro.asp)<br>
+* [Mozilla JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)<br>
+* [JQuey API](https://api.jquery.com/)<br>
+* [moment.js](https://momentjs.com/)<br>
+* [Google Fonts](https://fonts.google.com/)<br>
+* [Visual Studio Code](https://code.visualstudio.com/)<br>
+* [w3 code validator](https://validator.w3.org/)<br>
+* [Materialize CSS](https://materializecss.com/about.html)
+* [YouTube - Build Weather APP with Weather Map API](https://www.youtube.com/watch?v=KT6Jaxl0JM4&list=PLAEoBV_GLyq4klW-2Pm75_5-r4oHhwqlm&index=4)
+* [YouTube-How to Use New York Time API to Search Articles](https://www.youtube.com/watch?v=QiIlhmeGYuk)
+* [OpenWeather API](https://openweathermap.org/)
+* [UV Index Levels](https://en.wikipedia.org/wiki/Ultraviolet_index#:~:text=A%20UV%20index%20reading%20of%203%20to%205%20means%20moderate,when%20the%20Sun%20is%20strongest.&text=A%20UV%20index%20reading%20of%206%20to%207%20means%20high,and%20eye%20damage%20is%20needed.)
 
 
 <a name="License"></a>
