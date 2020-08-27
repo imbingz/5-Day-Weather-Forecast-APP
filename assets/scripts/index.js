@@ -25,6 +25,37 @@ $(document).ready(function() {
 
 	/* UPDATE PAGE ============================================================================== */
 
+	let searchCity = [];
+
+	// check and remove the duplication
+	function onlyUnique(value, index, self) {
+		return self.indexOf(value) === index;
+	}
+
+	// Search city history update
+	function displaySearchHistory(city) {
+		city = $('#cityInput').val().trim();
+
+		// let latestSearch = searchCity.slice(0, 2);
+
+		if (city) {
+			$('.collection').empty();
+			//add city input to the start of the array
+			searchCity.unshift(city);
+			// delete duplication
+			var latestSearch = searchCity.slice(0, 9).filter(onlyUnique);
+
+			for (let i = 0; i < latestSearch.length; i++) {
+				let sampleCityLi = `
+		      <li class="collection-item">
+		        <a href="#" class="grey-text text-darken-1 sample-city" data-city="austin">${latestSearch[i]}</a>
+		      </li>
+		      `;
+				$('.collection').append(sampleCityLi);
+			}
+		}
+	}
+
 	//Current Weather Update
 
 	function updateCurrentWeather(cwData) {
@@ -77,49 +108,11 @@ $(document).ready(function() {
 		});
 	}
 
-	// Get search history array
-	function getSearchHistoy() {
-		let historyStr = localStorage.getItem('searchHistory');
-		if (historyStr !== null) {
-			historyStr = JSON.parse(historyStr);
-		} else {
-			return [];
-		}
-	}
-
-	// Assign getSearchHistory() to a variable
-	let searchHistory = getSearchHistoy();
-
-	//Display Search City History
-	function displaySearchHistory(city) {
-		//Only add the city to the beginning of searchHistory array if there is user input
-		if (city) {
-			// Filter out the cities that users have previously searched to avoid repetition
-			searchHistory = searchHistory.filter(function(input) {
-				return input !== city;
-			});
-			//Add city to the beginning of the array
-			searchHistory.unshift(city);
-			//Save the city search history to the local storage
-			localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-		}
-		//clear out the search history
-		$('.collection').empty();
-		// Use a for loop to append only the lastest 8 different cities
-		for (let i = 0; i < searchHistory.slice(0, 9); i++) {
-			searchCity = `<li class="collection-item">
-            <a href="#" class="grey-text text-darken-1 search-city" data-city="austin">${searchHistory[i]}</a>
-          </li>`;
-			$('.collection').append(searchCity);
-		}
-	}
-
 	// 5-Day Forecast Update
 
 	function updateForecastPage(wfData) {
-    for (let i = 1; i < wfData.list.length; i += 8) {
-      
-      // Get info from response data 
+		for (let i = 1; i < wfData.list.length; i += 8) {
+			// Get info from response data
 			let year = wfData.list[i].dt_txt.slice(0, 4);
 			let month = wfData.list[i].dt_txt.slice(5, 7);
 			let day = wfData.list[i].dt_txt.slice(8, 10);
@@ -128,8 +121,8 @@ $(document).ready(function() {
 			let iconURL = 'http://openweathermap.org/img/w/' + iconCode + '.png';
 			let temp = wfData.list[i].main.temp;
 			let humidity = wfData.list[i].main.humidity;
-      
-      // Set up HTML structure 
+
+			// Set up HTML structure
 			let forecastDay = `
 			<div class="col s12 l5ths">
 				<div class="card card-panel forecast blue accent-4">
@@ -146,7 +139,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 		`;
-      // Display 5- day weather forecast 
+			// Display 5- day weather forecast
 			$('#forecast-div').append(forecastDay);
 		}
 	}
@@ -158,18 +151,20 @@ $(document).ready(function() {
 		$('#main-display').empty();
 	}
 
-	/* CLICK HANDLER ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+	/* CLICK HANDLER - ACTOIN STARTS HERE ---------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 	$('#searchBtn').on('click', function(event) {
 		//Prevent form submission and page reload
 		event.preventDefault();
 
-		//Clear the display before calling query
-		clear();
-
 		let city = $('#cityInput').val().trim();
 
+		displaySearchHistory(city);
+
 		if (city) {
+			//Clear the display before calling query
+			clear();
+
 			$.ajax({
 				url: buildCurrentQuery(),
 				method: 'GET'
@@ -181,54 +176,4 @@ $(document).ready(function() {
 			}).then(updateForecastPage);
 		}
 	});
-
-	/*--------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-	// Current Weather URL
-
-	/* SET GLOBAL VIRABLES ----------------------------------------------------------------------------------- */
-
-	// const apiKey = '3019514fb26959aff7eeb1e73e5aa725';
-	// var queryCity = $('#cityInput').val().trim();
-	// console.log(queryCity);
-	// let cityHistory = [];
-
-	/* ADD SEARCH BUTTON CLICK EVENT HANDLER  ----------------------------------------------------------------------------------- */
-	// $('#searchBtn').on('click', function(event) {
-	// 	console.log('button clicked');
-	// 	event.preventDefault();
-	// 	if (queryCity) {
-	// 		displayWeather(city);
-	// 	}
-	// });
-
-	/* MAKE API CALLS AND DISPLAY WEATHER     ----------------------------------------------------------------------------------- */
-
-	// function displayWeather(city) {
-	// 	//First check if there is any user input or stored city
-	// 	if (!queryCity && !cityHistory.length) return;
-
-	// 	// Making query calls to both current and forecast weather asynchronously
-	// 	Promise.all([
-	// 		$.ajax({
-	// 			url: `https://api.openweathermap.org/data/2.5/weather?q=${queryCity ||
-	// 				cityHistory[0]}&units=imperial&appid=${apiKey}`,
-	// 			method: 'GET'
-	// 		}),
-	// 		$.ajax({
-	// 			url: `https://api.openweathermap.org/data/2.5/forecast?q=${queryCity ||
-	// 				cityHistory[0]}&units=imperial&appid=${apiKey}`,
-	// 			method: 'GET'
-	// 		}).then(function(result) {
-	// 			console.log(result[0]);
-	// 			$.ajax({
-	// 				url: `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${result[0].coord.lat}&lon=${result[0]
-	// 					.coord.lon}`,
-	// 				method: 'GET'
-	// 			}).catch(function(err) {
-	// 				console.log(`Error in promises $(err)`);
-	// 			});
-	// 		})
-	// 	]);
-	// }
 });
