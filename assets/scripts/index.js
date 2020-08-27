@@ -44,6 +44,13 @@ $(document).ready(function() {
 			searchCity.unshift(city);
 			// delete duplication and only show 8 lates cities
 			var latestSearch = searchCity.slice(0, 8).filter(onlyUnique);
+
+			// Set local storage to save latest search array
+			localStorage.setItem('latestSearch', JSON.stringify(latestSearch));
+
+			//Get localStorage data to display the saved city li
+			latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
+
 			// Append saved city li to ul
 			for (let i = 0; i < latestSearch.length; i++) {
 				let sampleCityLi = `
@@ -73,6 +80,7 @@ $(document).ready(function() {
 		// Generate UV index query URL using lon and lat from current weather query response
 		let uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
 
+		// Making query call to UV index data
 		$.ajax({
 			url: uvQueryURL,
 			mathod: 'GET'
