@@ -60,7 +60,9 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 <a name="learned"></a>
 ### 6. Challenges & What I've Learned
 * The challeng started with UI. I wanted to try a new framwork besides Bootstrap, so I used Materialize CSS for the first time. I used 9 col for large screen to display 5 sub-divided col. I could not achieve the result with Materialize grid system, so I used css to give each sub-col 20% of the fiull width of 9-col. 
-* Originally I made 3 separate api calls using ajax until I talked  about this issue with my tutor. He pointed me to Promise.all function for async call. 
+* Originally I made 3 separate api calls using ajax for current weather condition, 5-day weather forcast and uv index data until I talked  about this issue with my tutor. He pointed me to Promise.all() function for async call. 
+* How to choose the right date to display for each of 5-day forecast was a challenge. After looking into the response object and some research, I noticed that open weather api records 8 times through out a day, the index 0 is for current day, index 1-8 is for the next day, index 9-17 and so on. So, let the index increase by 8 for each loop will give me what I am looking for. 
+* For best user experience, I wanted to display the latest search city history at the very top, and also I don't want to display the same city more than once. There are couple of ways to accomplish that after some research, and I chose to use array.filter() along with unshit(). 
 
 
 <a name="Installation"></a>
