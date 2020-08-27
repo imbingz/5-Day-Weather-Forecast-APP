@@ -53,6 +53,7 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 
 #### Screenshots - Mobile View
 <kbd>![screenshot-mobile](./assets/images/m1.png)</kbd>
+<kbd>![screenshot-mobile](./assets/images/m2.png)</kbd>
 
 ####  Screenshots - Laptop view 
 <kbd>![screenshot-laptop](./assets/images/s1.png)</kbd>
@@ -60,9 +61,9 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 <a name="learned"></a>
 ### 6. Challenges & What I've Learned
 * The challeng started with UI. I wanted to try a new framwork besides Bootstrap, so I used Materialize CSS for the first time. I used 9 col for large screen to display 5 sub-divided col. I could not achieve the result with Materialize grid system, so I used css to give each sub-col 20% of the fiull width of 9-col. 
-* Originally I made 3 separate api calls using ajax for current weather condition, 5-day weather forcast and uv index data until I talked  about this issue with my tutor. He pointed me to Promise.all() function for async call. 
+* I know Promise.all() will be better method to use when calling multiple apis at once. However, I could not make it work in my codes when changing 2 separate ajax calls to one promise.all. 
 * How to choose the right date to display for each of 5-day forecast was a challenge. After looking into the response object and some research, I noticed that open weather api records 8 times through out a day, the index 0 is for current day, index 1-8 is for the next day, index 9-17 and so on. So, let the index increase by 8 for each loop will give me what I am looking for. 
-* For best user experience, I wanted to display the latest search city history at the very top, and also I don't want to display the same city more than once. There are couple of ways to accomplish that after some research, and I chose to use array.filter() along with unshit(). 
+* For best user experience, I wanted to display the latest search city history at the very top, and also I don't want to display the same city more than once. There are couple of ways to accomplish that after some research, and I chose to use array.filter() along with unshit() and indexOf(). 
 
 
 <a name="Installation"></a>
@@ -77,7 +78,7 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 
 <a name="Credits"></a>
 ### 8. Credits:
-It is not possible to complete this project without the coding online communities and recources such as stackoverflow, mozilla developer network and the following teams. 
+It is not possible to complete this project without the coding online communities and recources such as stackoverflow.com, mozilla developer network and the following teams. 
 
 
 [Mozilla HTML5 Guide](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)<br>
@@ -90,6 +91,7 @@ It is not possible to complete this project without the coding online communitie
 [w3 code validator](https://validator.w3.org/)<br>
 [Materialize CSS](https://materializecss.com/about.html)
 [YouTube - Build Weather APP with Weather Map API](https://www.youtube.com/watch?v=KT6Jaxl0JM4&list=PLAEoBV_GLyq4klW-2Pm75_5-r4oHhwqlm&index=4)
+[YouTube-How to Use New York Time API to Search Articles](https://www.youtube.com/watch?v=QiIlhmeGYuk)
 [OpenWeather API](https://openweathermap.org/)
 [UV Index Levels](https://en.wikipedia.org/wiki/Ultraviolet_index#:~:text=A%20UV%20index%20reading%20of%203%20to%205%20means%20moderate,when%20the%20Sun%20is%20strongest.&text=A%20UV%20index%20reading%20of%206%20to%207%20means%20high,and%20eye%20damage%20is%20needed.)
 
