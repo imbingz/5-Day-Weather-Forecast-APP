@@ -36,15 +36,15 @@ $(document).ready(function() {
 	function displaySearchHistory(city) {
 		city = $('#cityInput').val().trim();
 
-		// let latestSearch = searchCity.slice(0, 2);
-
+		// First check if there is any user input
 		if (city) {
+			//Clear UL conent
 			$('.collection').empty();
 			//add city input to the start of the array
 			searchCity.unshift(city);
-			// delete duplication
-			var latestSearch = searchCity.slice(0, 9).filter(onlyUnique);
-
+			// delete duplication and only show 8 lates cities
+			var latestSearch = searchCity.slice(0, 8).filter(onlyUnique);
+			// Append saved city li to ul
 			for (let i = 0; i < latestSearch.length; i++) {
 				let sampleCityLi = `
 		      <li class="collection-item">
