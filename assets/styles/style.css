@@ -14,8 +14,15 @@ main ul li.sample-city a {
 	line-height: 2.3rem;
 }
 
-.card.main-display {
-	margin: 10px;
+#main-display .current {
+	margin: 6px;
+	background-image: linear-gradient(to right, #ede7f6, #304ffe);
+	background-size: cover;
+}
+
+#main-display span#uv {
+	padding: 5px 10px;
+	font-size: large;
 }
 
 h5.forecast-title {
