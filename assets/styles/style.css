@@ -1,3 +1,7 @@
+/* 
+colors:  #ede7f6, #304ffe, #757575,  #e7f1fe
+*/
+
 * {
 	box-sizing: border-box;
 }
@@ -15,7 +19,7 @@ main ul li#savedCity {
 }
 
 main ul li#savedCity:hover {
-	background-color: #ede7f6;
+	background-color: #e7f1fe;
 	cursor: pointer;
 }
 
@@ -41,6 +45,8 @@ h5.forecast-title {
 @media only screen and (max-width: 600px) {
 	header a.brand-logo {
 		font-size: 1.7rem;
+		display: inline-block;
+		width: 100%;
 	}
 
 	.row .col.l5ths {
