@@ -51,14 +51,28 @@ $(document).ready(function() {
 			//Get localStorage data to display the saved city li
 			latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 
-			// Append saved city li to ul
 			for (let i = 0; i < latestSearch.length; i++) {
+				// Append saved city li to ul
 				let sampleCityLi = `
-		      <li class="collection-item">
-		        <a href="#" class="grey-text text-darken-1 sample-city" data-city="austin">${latestSearch[i]}</a>
-		      </li>
-		      `;
+			    <li class="collection-item">
+			      <a href="#" class="grey-text text-darken-1" id="savedCity" data-city=${latestSearch[i]}>${latestSearch[i]}</a>
+			    </li>
+			    `;
 				$('.collection').append(sampleCityLi);
+
+				//Add event handler on saved city li
+				$('#savedCity').on('click', function() {
+					let savedCity = $(this).attr('data-city');
+					let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+					$.ajax({
+						url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
+						method: 'GET'
+					}).then(updateCurrentWeather);
+					$.ajax({
+						url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
+						method: 'GET'
+					}).then(updateForecastPage);
+				});
 			}
 		}
 	}
