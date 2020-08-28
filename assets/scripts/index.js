@@ -81,8 +81,9 @@ $(document).ready(function() {
 	// Use localStorage to display last search
 	function displayLocalStorage() {
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
-
-		for (let i = 0; i < latestSearch.length; i++) {
+		
+		if (latestSearch !==[]) {
+			for (let i = 0; i < latestSearch.length; i++) {
 			let sampleCityLi = `
 			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
 				i
@@ -91,11 +92,11 @@ $(document).ready(function() {
           `;
 			$('.collection').append(sampleCityLi);
 		}
+		
 		//Add event handler on saved city li
 		$('li').on('click', function() {
 			clear();
 			let savedCity = $(this).attr('data-city');
-			console.log(savedCity);
 			let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
 			$.ajax({
 				url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
@@ -106,6 +107,8 @@ $(document).ready(function() {
 				method: 'GET'
 			}).then(updateForecastPage);
 		});
+		}
+		
 	}
 	displayLocalStorage();
 
@@ -160,7 +163,7 @@ $(document).ready(function() {
 
 			let currentDay = `
       <div class="card card-panel current">
-				<h2 class="card-title" id='cityName'>${lastQuery.city}</h2>
+				<h3 class="card-title" id='cityName'>${lastQuery.city}</h3>
 				<P id="date">${lastQuery.date}</p> 
 				<div><img id="wicon" src="${lastQuery.icon}" alt="Weather icon"></div>
         <p class="temperature">Temperature: <span id="temperature">${lastQuery.temp} &deg;F</span></p>
@@ -173,6 +176,59 @@ $(document).ready(function() {
 			$('#main-display').append(currentDay);
 		});
 	}
+
+	// let uvColor = '';
+	// function uvIndexData(uvData) {
+			
+	// 		let query = {
+	// 			city: cwData.name,
+	// 			date: moment().format('ddd, LL'),
+	// 			icon: 'http://openweathermap.org/img/w/' + iconCode + '.png',
+	// 			temp: cwData.main.temp,
+	// 			humidity: cwData.main.humidity,
+	// 			windSpeed: cwData.wind.speed,
+	// 			uv: uvData.value
+	// 		};
+			
+	// 		//Check uvIndex and color label uv 
+	// 		if (query.uv <= 2) {
+	// 			uvColor = 'green';
+	// 			console.log(uvColor);
+	// 		} else if (query.uv <= 5) {
+	// 			uvColor = 'yellow';
+	// 		} else if (query.uv <= 7) {
+	// 			uvColor = 'orange';
+	// 		} else if (query.uv <= 10) {
+	// 			uvColor = 'red';
+	// 		} else {
+	// 			uvColor = 'voilet';
+	// 		}
+
+	// 		localStorage.setItem('query', JSON.stringify(query));
+	// 		storedCurrentDisplay();
+
+	// }
+	// Display current weather from localStorage
+
+
+	// function storedCurrentDisplay() {
+		
+	// 	let lastQuery = JSON.parse(localStorage.getItem('query'));
+
+	// 		let currentDay = `
+  //     <div class="card card-panel current">
+	// 			<h2 class="card-title" id='cityName'>${lastQuery.city}</h2>
+	// 			<P id="date">${lastQuery.date}</p> 
+	// 			<div><img id="wicon" src="${lastQuery.icon}" alt="Weather icon"></div>
+  //       <p class="temperature">Temperature: <span id="temperature">${lastQuery.temp} &deg;F</span></p>
+  //       <p class="humidity">Humidity: <span id="humidity">${lastQuery.humidity}%</span></p>
+  //       <p class="windSpeed">Wind Speed: <span id="windSpeed">${lastQuery.windSpeed} MPH</span></p>
+  //       <p class="uv">UV Index: <span id="uv" class="${uvColor} white-text">${lastQuery.uv}</span></p>        
+  //     </div>
+	// 	`;
+
+	// 		$('#main-display').append(currentDay);
+	// }
 
 	// 5-Day Forecast Update
 
