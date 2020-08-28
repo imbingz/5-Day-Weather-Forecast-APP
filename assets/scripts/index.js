@@ -48,32 +48,40 @@ $(document).ready(function() {
 
 			latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 
-			for (let i = 0; i < latestSearch.length; i++) {
-				let sampleCityLi = `
-			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
-					i
-				].toUpperCase()}
-			    </li>
-          `;
-				$('.collection').append(sampleCityLi);
-			}
-			//Add event handler on saved city li
-			$('li').on('click', function() {
-				clear();
-				let savedCity = $(this).attr('data-city');
-				console.log(savedCity);
-				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
-				$.ajax({
-					url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
-					method: 'GET'
-				}).then(updateCurrentWeather);
-				$.ajax({
-					url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
-					method: 'GET'
-				}).then(updateForecastPage);
-			});
+			displayLocalStorage();
 		}
 	}
+
+	// Use localStorage to display last search
+	function displayLocalStorage() {
+		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
+
+		for (let i = 0; i < latestSearch.length; i++) {
+			let sampleCityLi = `
+			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
+				i
+			].toUpperCase()}
+			    </li>
+          `;
+			$('.collection').append(sampleCityLi);
+		}
+		//Add event handler on saved city li
+		$('li').on('click', function() {
+			clear();
+			let savedCity = $(this).attr('data-city');
+			console.log(savedCity);
+			let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+			$.ajax({
+				url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
+				method: 'GET'
+			}).then(updateCurrentWeather);
+			$.ajax({
+				url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
+				method: 'GET'
+			}).then(updateForecastPage);
+		});
+	}
+	displayLocalStorage();
 
 	function updateCurrentWeather(cwData) {
 		var apiKey = '3019514fb26959aff7eeb1e73e5aa725';
