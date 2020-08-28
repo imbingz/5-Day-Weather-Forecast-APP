@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 	let searchCity = [];
 
-	// check and remove the duplication
+	// check and remove the duplication of searched cities 
 	function onlyUnique(value, index, self) {
 		return self.indexOf(value) === index;
 	}
@@ -102,19 +102,45 @@ $(document).ready(function() {
 		$('#main-display').empty();
 	}
 
+/* MAMKING QUERY CALLS ===================================================================================================================================*/
+	
+		// Make Current Weather Query Call
+
+	function currentQueryCall() {
+		$.ajax({
+			url: buildCurrentQuery(),
+			method: 'GET'
+		}).then(updateCurrentWeather);
+	}
+
+	// Make Forecast Weather query call
+
+	function forecastQueryCall() {
+		$.ajax({
+			url: buildForcastQuery(),
+			method: 'GET'
+		}).then(updateForecastPage);
+	}
+
+
 	/* CLICK HANDLER - ACTOIN STARTS HERE 
 	=====================================================================================================================*/
 
 	$('#searchBtn').on('click', function(event) {
+		console.log("button clicked");
 		//Prevent form submission and page reload
 		event.preventDefault();
-
+		//Save user input to a variable 
 		let city = $('#cityInput').val().trim();
+		console.log(city);
+		console.log($('#warning').text());
+		// First check if there is a user input 
+		if (city!== "") {
+			displaySearchHistory(city);
+			currentQueryCall()
 
-		
-
-		displaySearchHistory(city);
-
-
+		} else {
+			$('#warning').append('<h5 class="red-text center">"Search Field can not be empty!"</h5>')
+		}
 	});
 });
