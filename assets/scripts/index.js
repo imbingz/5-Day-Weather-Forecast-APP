@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	/* BUILD QUERY URL ============================================================================= */
+	/* BUILD QUERY URL
+ =================================================================================================*/
 
 	// Current Weather URL
 
@@ -23,7 +24,31 @@ $(document).ready(function() {
 		return queryURL;
 	}
 
-	/* UPDATE PAGE ============================================================================== */
+	/* MAKE QUERY CALLS
+ =================================================================================================*/
+
+	// Make Current Weather Query Call
+
+	function currentQueryCall() {
+		$.ajax({
+			url: buildCurrentQuery(),
+			method: 'GET'
+		}).then(updateCurrentWeather);
+	}
+
+	// Make Forecast Weather query call
+
+	function forecastQueryCall() {
+		$.ajax({
+			url: buildForcastQuery(),
+			method: 'GET'
+		}).then(updateForecastPage);
+	}
+
+	/* UPDATE PAGE 
+	==================================================================================================== */
+
+	// Saved Search City
 
 	let searchCity = [];
 
@@ -34,8 +59,9 @@ $(document).ready(function() {
 
 	// Search city history update
 	function displaySearchHistory(city) {
+		//Get user input data
 		city = $('#cityInput').val().trim();
-
+		//Check
 		if (city) {
 			$('.collection').empty();
 			//add city input to the start of the array
@@ -107,7 +133,7 @@ $(document).ready(function() {
 
 			let query = {
 				city: cwData.name,
-				date: moment().format('MM/DD/YYYY'),
+				date: moment().format('ddd, LL'),
 				icon: 'http://openweathermap.org/img/w/' + iconCode + '.png',
 				temp: cwData.main.temp,
 				humidity: cwData.main.humidity,
@@ -134,7 +160,9 @@ $(document).ready(function() {
 
 			let currentDay = `
       <div class="card card-panel current">
-        <h3 class="card-title" id='cityName'>${lastQuery.city} <span id="date"> ${lastQuery.date} </span> <img id="wicon" src="${lastQuery.icon}" alt="Weather icon"></h3>
+				<h2 class="card-title" id='cityName'>${lastQuery.city}</h2>
+				<P id="date">${lastQuery.date}</p> 
+				<div><img id="wicon" src="${lastQuery.icon}" alt="Weather icon"></div>
         <p class="temperature">Temperature: <span id="temperature">${lastQuery.temp} &deg;F</span></p>
         <p class="humidity">Humidity: <span id="humidity">${lastQuery.humidity}%</span></p>
         <p class="windSpeed">Wind Speed: <span id="windSpeed">${lastQuery.windSpeed} MPH</span></p>
@@ -182,14 +210,15 @@ $(document).ready(function() {
 		}
 	}
 
-	/* CLEAR INPUT ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+	/* CLEAR INPUT ===================================================================================================================================*/
 
 	function clear() {
 		$('#forecast-div').empty();
 		$('#main-display').empty();
 	}
 
-	/* CLICK HANDLER - ACTOIN STARTS HERE ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+	/* CLICK HANDLER - ACTOIN STARTS HERE 
+	=====================================================================================================================*/
 
 	$('#searchBtn').on('click', function(event) {
 		//Prevent form submission and page reload
@@ -203,15 +232,9 @@ $(document).ready(function() {
 			//Clear the display before calling query
 			clear();
 
-			$.ajax({
-				url: buildCurrentQuery(),
-				method: 'GET'
-			}).then(updateCurrentWeather);
+			currentQueryCall();
 
-			$.ajax({
-				url: buildForcastQuery(),
-				method: 'GET'
-			}).then(updateForecastPage);
+			forecastQueryCall();
 		}
 	});
 });
