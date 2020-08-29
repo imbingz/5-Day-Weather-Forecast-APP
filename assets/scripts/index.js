@@ -22,7 +22,7 @@ $(document).ready(function() {
 		displayStoredForecast();
 	}
 
-	function sotreSearch() {
+	function storeSearch() {
 		//Stringify and set localStorage to searchCity array
 		localStorage.setItem('latestSearch', JSON.stringify(searchCity));
 	}
@@ -89,7 +89,7 @@ $(document).ready(function() {
 		searchCity.unshift(city);
 		// delete duplication and only keep  4 latest searches
 		searchCity = searchCity.slice(0, 4).filter(onlyUnique);
-		sotreSearch();
+		storeSearch();
 		displayLocalStorage();
 	}
 
@@ -97,6 +97,7 @@ $(document).ready(function() {
 
 	// Use localStorage to display last search cities
 	function displayLocalStorage() {
+		clear();
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		//Use for loop to dispaly saved search cites
 		if (latestSearch) {
@@ -113,15 +114,15 @@ $(document).ready(function() {
 			}
 
 			//Add event handler on saved city li
-			$('ul').on('click','li', function() {
+			$('li').on('click', function() {
 				clear();
 				let savedCity = $(this).attr('data-city');
 				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
 				searchCity.unshift(savedCity);
-				//Store updated serachCity array
-				sotreSearch();
 
 				// displaySearchHistory(savedCity)
+
+				//Make a call to current weather api
 				$.ajax({
 					url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
 					method: 'GET'
@@ -130,6 +131,8 @@ $(document).ready(function() {
 					.catch(function(err) {
 						console.log(err);
 					});
+
+				// Make a call to 5-day forecast API
 				$.ajax({
 					url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
 					method: 'GET'
@@ -202,6 +205,7 @@ $(document).ready(function() {
 
 	// Use localStorage to display last searched city
 	function displayStoredCurrent() {
+		clear();
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		if (latestSearch !== null) {
 			searchCity[0] = latestSearch[0];
@@ -212,6 +216,7 @@ $(document).ready(function() {
 	// 5-Day Weather Forecast
 
 	function updateForecastPage(wfData) {
+		// clear()
 		for (let i = 1; i < wfData.list.length; i += 8) {
 			// Get info from response data
 			let year = wfData.list[i].dt_txt.slice(0, 4);
@@ -249,6 +254,7 @@ $(document).ready(function() {
 
 	// Use localStorage to display last searched city
 	function displayStoredForecast() {
+		clear();
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		if (latestSearch !== null) {
 			searchCity[0] = latestSearch[0];
@@ -259,6 +265,7 @@ $(document).ready(function() {
 	/* WARNING MESSAGES ===================================================================================================================================*/
 	function noInputWarning() {
 		$('#warning').append('<h5 class="red-text center">"Search Field can not be empty!"</h5>');
+		// $('#warning').empty();
 	}
 
 	/* CLEAR INPUT ===================================================================================================================================*/
@@ -279,6 +286,7 @@ $(document).ready(function() {
 
 		// First check if there is a user input
 		if (city !== '') {
+			$('#warning').empty();
 			clear();
 			displaySearchHistory();
 			currentQueryCall();
