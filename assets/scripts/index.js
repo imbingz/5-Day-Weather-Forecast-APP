@@ -87,8 +87,8 @@ $(document).ready(function() {
 		}
 		//add city input to the start of the array
 		searchCity.unshift(city);
-		// delete duplication and only keep  9 latest searches
-		searchCity = searchCity.slice(0, 9).filter(onlyUnique);
+		// delete duplication and only keep  4 latest searches
+		searchCity = searchCity.slice(0, 4).filter(onlyUnique);
 		sotreSearch();
 		displayLocalStorage();
 	}
@@ -100,8 +100,8 @@ $(document).ready(function() {
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		//Use for loop to dispaly saved search cites
 		if (latestSearch) {
-			// delete duplication and only keep  9 latest searches
-			latestSearch = latestSearch.slice(0, 9).filter(onlyUnique);
+			// delete duplication and only keep  4 latest searches
+			latestSearch = latestSearch.slice(0, 4).filter(onlyUnique);
 			for (let i = 0; i < latestSearch.length; i++) {
 				let sampleCityLi = `
 			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
