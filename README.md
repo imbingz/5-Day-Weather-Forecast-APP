@@ -95,7 +95,8 @@ It is not possible to complete this project without the coding online communitie
 * [Materialize CSS](https://materializecss.com/about.html)
 * [YouTube - Build Weather APP with Weather Map API](https://www.youtube.com/watch?v=KT6Jaxl0JM4&list=PLAEoBV_GLyq4klW-2Pm75_5-r4oHhwqlm&index=4)
 * [YouTube-How to Use the NYTimes Developer API (2017)](https://www.youtube.com/watch?v=QiIlhmeGYuk)
-* [youTube-How to Cache Data with LocalStorage](https://youtu.be/fe6rCk7a6u0)
+* [YouTube-How to Cache Data with LocalStorage](https://youtu.be/fe6rCk7a6u0)
+* [YouTube - How Best Add Event Handlers to Dynamically Created Elements](https://youtu.be/Wxnd21_f_pc)
 * [OpenWeather API](https://openweathermap.org/)
 * [UV Index Levels](https://en.wikipedia.org/wiki/Ultraviolet_index#:~:text=A%20UV%20index%20reading%20of%203%20to%205%20means%20moderate,when%20the%20Sun%20is%20strongest.&text=A%20UV%20index%20reading%20of%206%20to%207%20means%20high,and%20eye%20damage%20is%20needed.)
 
