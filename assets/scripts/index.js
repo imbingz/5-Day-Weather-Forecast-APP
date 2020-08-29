@@ -48,7 +48,8 @@ $(document).ready(function() {
 		return queryURL;
 	}
 
-	/* MAMKING QUERY CALLS ===================================================================================================================================*/
+	/* MAMKING QUERY CALLS 
+	===================================================================================================================================*/
 
 	// Make Current Weather Query Call
 
@@ -71,7 +72,7 @@ $(document).ready(function() {
 	/* UPDATE PAGE 
 	==================================================================================================== */
 
-	// check and remove the duplication of searched cities
+	// check and remove the duplication of searched cities https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
 	function onlyUnique(value, index, self) {
 		return self.indexOf(value) === index;
 	}
@@ -92,8 +93,6 @@ $(document).ready(function() {
 		storeSearch();
 		displayLocalStorage();
 	}
-
-	// displayLocalStorage();
 
 	// Use localStorage to display last search cities
 	function displayLocalStorage() {
@@ -120,8 +119,6 @@ $(document).ready(function() {
 				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
 				searchCity.unshift(savedCity);
 
-				// displaySearchHistory(savedCity)
-
 				//Make a call to current weather api
 				$.ajax({
 					url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
@@ -145,6 +142,7 @@ $(document).ready(function() {
 		}
 	}
 
+	// Update current weather using data from query call
 	function updateCurrentWeather(cwData) {
 		let iconCode = cwData.weather[0].icon;
 		let lon = cwData.coord.lon;
@@ -183,6 +181,7 @@ $(document).ready(function() {
 					uvColor = 'voilet';
 				}
 
+				//set HTML sturcture to append
 				let currentDay = `
 			<div class="card card-panel current">
 				<h3 class="card-title" id='cityName'>${current.city}</h3>
@@ -200,8 +199,6 @@ $(document).ready(function() {
 				console.log(err);
 			});
 	}
-
-	// displayStoredCurrent();
 
 	// Use localStorage to display last searched city
 	function displayStoredCurrent() {
@@ -250,8 +247,6 @@ $(document).ready(function() {
 		}
 	}
 
-	// displayStoredForecast();
-
 	// Use localStorage to display last searched city
 	function displayStoredForecast() {
 		clear();
@@ -262,13 +257,16 @@ $(document).ready(function() {
 		}
 	}
 
-	/* WARNING MESSAGES ===================================================================================================================================*/
+	/* WARNING MESSAGES
+	 ===================================================================================================================================*/
+
 	function noInputWarning() {
 		$('#warning').append('<h5 class="red-text center">"Search Field can not be empty!"</h5>');
 		// $('#warning').empty();
 	}
 
-	/* CLEAR INPUT ===================================================================================================================================*/
+	/* CLEAR INPUT 
+	===================================================================================================================================*/
 
 	function clear() {
 		$('#forecast-div').empty();
