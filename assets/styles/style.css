@@ -1,9 +1,8 @@
 /* 
-colors:  #fcf9f0, #fff8e1, #f3e5f5, 
+colors:   #ede7f6 #fff8e1, #f3e5f5,  #ccff90
  #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #6c5ef1, #fff8e1 
 
 */
-
 
 body {
 	margin: 0;
@@ -13,7 +12,7 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-	background-color: #fcf9f0; ;
+	background-color: #ede7f6;
 }
 
 main {
@@ -23,7 +22,7 @@ main {
 
 main #search-section {
 	margin-top: 10px;
-	background-color:#fff8e1;
+	background-color: #f3e5f5;
 }
 
 main ul li#savedCity {
@@ -32,13 +31,13 @@ main ul li#savedCity {
 }
 
 main ul li#savedCity:hover {
-	background-color: #f3e5f5;
+	background-color: #ccff90;
 	cursor: pointer;
 }
 
 #main-display .current {
 	margin: 10px;
-	background-image: linear-gradient(to right, #f9fbe7 , #bbdefb , #76ff03,  #ffc107 ,  #fff8e1 );
+	background-image: linear-gradient(to right, #f9fbe7, #bbdefb, #76ff03, #ffc107, #fff8e1);
 	background-size: cover;
 	padding-left: 2rem;
 }
