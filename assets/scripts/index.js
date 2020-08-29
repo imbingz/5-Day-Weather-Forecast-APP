@@ -87,7 +87,7 @@ $(document).ready(function() {
 		//add city input to the start of the array
 		searchCity.unshift(city);
 		// delete duplication and only keep  9 latest searches
-		searchCity = searchCity.slice(0, 2).filter(onlyUnique);
+		searchCity = searchCity.slice(0, 9).filter(onlyUnique);
 		sotreSearch();
 		displayLocalStorage();	
 	}
@@ -100,7 +100,7 @@ $(document).ready(function() {
 		//Use for loop to dispaly saved search cites 
 		if (latestSearch) {
 			// delete duplication and only keep  9 latest searches	
-			latestSearch = latestSearch.slice(0, 2).filter(onlyUnique);
+			latestSearch = latestSearch.slice(0, 9).filter(onlyUnique);
 			for (let i = 0; i < latestSearch.length; i++) {
 			let sampleCityLi = `
 			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
@@ -182,7 +182,7 @@ function updateCurrentWeather(cwData) {
 			}
 		
 			let currentDay = `
-      <div class="card card-panel current">
+			<div class="card card-panel current">
 				<h3 class="card-title" id='cityName'>${current.city}</h3>
 				<P id="date">${current.date}</p> 
 				<div><img id="wicon" src="${current.icon}" alt="Weather icon"></div>
@@ -224,7 +224,7 @@ function updateCurrentWeather(cwData) {
 			// Set up HTML structure
 			let forecastDay = `
 			<div class="col s12 l5ths">
-				<div class="card card-panel forecast blue accent-4">
+				<div class="card card-panel forecast  indigo accent-3">
 					<h4 class="card-title white-text">${dates}</h4>
 					<div class="icon">
 						<img id="wicon" src="${iconURL}" alt="Weather icon">
