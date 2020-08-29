@@ -1,10 +1,9 @@
 /* 
-colors:  #ede7f6, #304ffe, #757575,  #e7f1fe
+colors:  #fcf9f0, #fff8e1, #f3e5f5, 
+ #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #6c5ef1, #fff8e1 
+
 */
 
-* {
-	box-sizing: border-box;
-}
 
 body {
 	margin: 0;
@@ -14,12 +13,17 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-	background-color: #ede7f6;
+	background-color: #fcf9f0; ;
 }
 
 main {
 	flex: 1 0 auto;
 	margin: 0 10px;
+}
+
+main #search-section {
+	margin-top: 10px;
+	background-color:#fff8e1;
 }
 
 main ul li#savedCity {
@@ -28,13 +32,13 @@ main ul li#savedCity {
 }
 
 main ul li#savedCity:hover {
-	background-color: #e7f1fe;
+	background-color: #f3e5f5;
 	cursor: pointer;
 }
 
 #main-display .current {
 	margin: 10px;
-	background-image: linear-gradient(to right, #ede7f6, #304ffe);
+	background-image: linear-gradient(to right, #f9fbe7 , #bbdefb , #76ff03,  #ffc107 ,  #fff8e1 );
 	background-size: cover;
 	padding-left: 2rem;
 }
