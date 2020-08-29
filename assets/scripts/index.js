@@ -113,7 +113,7 @@ $(document).ready(function() {
 			}
 
 			//Add event handler on saved city li
-			$('li').on('click', function() {
+			$('ul').on('click','li', function() {
 				clear();
 				let savedCity = $(this).attr('data-city');
 				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
