@@ -152,35 +152,35 @@ $(document).ready(function() {
 		$.ajax({
 			url: uvQueryURL,
 			mathod: 'GET'
-		}).then(function(uvData) {
-			let uvIndex = uvData.value;
+		})
+			.then(function(uvData) {
+				let uvIndex = uvData.value;
 
-			let current = {
-				city: cwData.name,
-				date: moment().format('ddd, LL'),
-				icon: 'https://openweathermap.org/img/w/' + iconCode + '.png',
-				temp: cwData.main.temp,
-				humidity: cwData.main.humidity,
-				windSpeed: cwData.wind.speed,
-				uv: uvIndex
-			};
+				let current = {
+					city: cwData.name,
+					date: moment().format('ddd, LL'),
+					icon: 'https://openweathermap.org/img/w/' + iconCode + '.png',
+					temp: cwData.main.temp,
+					humidity: cwData.main.humidity,
+					windSpeed: cwData.wind.speed,
+					uv: uvIndex
+				};
 
-			// Check ui index and color label them
-			if (current.uv <= 2) {
-				let uvColor = '';
-				uvColor = 'green';
-				console.log(uvColor);
-			} else if (current.uv <= 5) {
-				uvColor = 'yellow';
-			} else if (current.uv <= 7) {
-				uvColor = 'orange';
-			} else if (current.uv <= 10) {
-				uvColor = 'red';
-			} else {
-				uvColor = 'voilet';
-			}
+				// Check ui index and color label them
+				if (current.uv <= 2) {
+					let uvColor = '';
+					uvColor = 'green';
+				} else if (current.uv <= 5) {
+					uvColor = 'yellow';
+				} else if (current.uv <= 7) {
+					uvColor = 'orange';
+				} else if (current.uv <= 10) {
+					uvColor = 'red';
+				} else {
+					uvColor = 'voilet';
+				}
 
-			let currentDay = `
+				let currentDay = `
 			<div class="card card-panel current">
 				<h3 class="card-title" id='cityName'>${current.city}</h3>
 				<P id="date">${current.date}</p> 
@@ -191,8 +191,11 @@ $(document).ready(function() {
         <p class="uv">UV Index: <span id="uv" class="${uvColor} white-text">${current.uv}</span></p>        
       </div>
 		`;
-			$('#main-display').append(currentDay);
-		});
+				$('#main-display').append(currentDay);
+			})
+			.catch(function(err) {
+				console.log(err);
+			});
 	}
 
 	// displayStoredCurrent();

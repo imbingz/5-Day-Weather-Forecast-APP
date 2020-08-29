@@ -2,31 +2,26 @@
 colors:  #ede7f6, #304ffe, #757575,  #e7f1fe
 */
 
-
-
 * {
 	box-sizing: border-box;
 }
 
-
-  
 body {
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	display: flex;
-  min-height: 100vh;
+	min-height: 100vh;
 	flex-direction: column;
-	background-color:  #ede7f6;
+	background-color: #ede7f6;
 }
 
-
 main {
-		flex: 1 0 auto;
-		margin: 0 10px;
-	}
-	
+	flex: 1 0 auto;
+	margin: 0 10px;
+}
+
 main ul li#savedCity {
 	font-size: 1.1rem;
 	line-height: 2.3rem;
@@ -67,7 +62,6 @@ h5.forecast-title {
 /* Media Query for mobile size */
 
 @media only screen and (max-width: 600px) {
-
 	header a.brand-logo {
 		font-size: 1.7rem;
 		display: inline-block;
@@ -77,8 +71,8 @@ h5.forecast-title {
 		width: 50%;
 	}
 
-	.card.forecast {
-		margin-left: 10px;
+	.card #forecast {
+		margin-left: 6px;
 	}
 }
 
@@ -87,5 +81,4 @@ h5.forecast-title {
 	.forecast h4.card-title {
 		font-size: large;
 	}
-
-} 
+}
