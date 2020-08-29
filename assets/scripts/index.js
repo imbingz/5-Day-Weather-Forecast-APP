@@ -1,23 +1,25 @@
 $(document).ready(function() {
-
-
-		/* SET GLOBAL VIRABLES
+	/* SET GLOBAL VIRABLES
 	==================================================================================================== */
 	const apiKey = '3019514fb26959aff7eeb1e73e5aa725';
 
 	let searchCity = [];
 
-		/* SET LOCAL STORAGE
+	/* SET LOCAL STORAGE
 	==================================================================================================== */
+
+	init();
 
 	function init() {
 		//Get Stored cities from localstorage and parseInt string to an Object
 		var latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		// If there is exsiting stored data, update the searchCity array
 		if (latestSearch !== null) {
-			searchCity = latestSearch; 
-		} 		
-		displaySearchHistory ()
+			searchCity = latestSearch;
+		}
+		displayLocalStorage();
+		displayStoredCurrent();
+		displayStoredForecast();
 	}
 
 	function sotreSearch() {
@@ -25,30 +27,30 @@ $(document).ready(function() {
 		localStorage.setItem('latestSearch', JSON.stringify(searchCity));
 	}
 
-
 	/* BUILD QUERY URL
  =================================================================================================*/
-	
+
 	// Current Weather URL
 
 	function buildCurrentQuery() {
 		let queryCity = $('#cityInput').val().trim();
-		queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity[0] || queryCity}&units=imperial&appid=${apiKey}`
+		queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity[0] ||
+			queryCity}&units=imperial&appid=${apiKey}`;
 		return queryURL;
 	}
-
 
 	// Forecast URL
 
 	function buildForcastQuery() {
 		let queryCity = $('#cityInput').val().trim();
-		queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity[0] || queryCity}&units=imperial&appid=${apiKey}`
+		queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity[0] ||
+			queryCity}&units=imperial&appid=${apiKey}`;
 		return queryURL;
 	}
 
-/* MAMKING QUERY CALLS ===================================================================================================================================*/
-	
-		// Make Current Weather Query Call
+	/* MAMKING QUERY CALLS ===================================================================================================================================*/
+
+	// Make Current Weather Query Call
 
 	function currentQueryCall() {
 		$.ajax({
@@ -66,16 +68,13 @@ $(document).ready(function() {
 		}).then(updateForecastPage);
 	}
 
-
 	/* UPDATE PAGE 
 	==================================================================================================== */
 
-	
-	// check and remove the duplication of searched cities 
+	// check and remove the duplication of searched cities
 	function onlyUnique(value, index, self) {
 		return self.indexOf(value) === index;
 	}
-
 
 	// Search city history update
 	function displaySearchHistory() {
@@ -83,77 +82,77 @@ $(document).ready(function() {
 		//Get user input data
 		let city = $('#cityInput').val().trim();
 		//Return early if no city input
-		if (city === "") { return; }; 
+		if (city === '') {
+			return;
+		}
 		//add city input to the start of the array
 		searchCity.unshift(city);
 		// delete duplication and only keep  9 latest searches
 		searchCity = searchCity.slice(0, 9).filter(onlyUnique);
 		sotreSearch();
-		displayLocalStorage();	
+		displayLocalStorage();
 	}
 
-	displayLocalStorage()
-	
+	// displayLocalStorage();
+
 	// Use localStorage to display last search cities
 	function displayLocalStorage() {
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
-		//Use for loop to dispaly saved search cites 
+		//Use for loop to dispaly saved search cites
 		if (latestSearch) {
-			// delete duplication and only keep  9 latest searches	
+			// delete duplication and only keep  9 latest searches
 			latestSearch = latestSearch.slice(0, 9).filter(onlyUnique);
 			for (let i = 0; i < latestSearch.length; i++) {
-			let sampleCityLi = `
+				let sampleCityLi = `
 			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
-				i
-			].toUpperCase()}
+					i
+				].toUpperCase()}
 			    </li>
           `;
-			$('.collection').append(sampleCityLi);
-		}
-		
-		//Add event handler on saved city li
-		$('li').on('click', function() {
-			clear();
-			let savedCity = $(this).attr('data-city');
-			let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
-			searchCity.unshift(savedCity);
-			//Store updated serachCity array
-			sotreSearch();
+				$('.collection').append(sampleCityLi);
+			}
 
-			// displaySearchHistory(savedCity)
-			$.ajax({
-				url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
-				method: 'GET'
-			}).then(updateCurrentWeather)
-				.catch(function(err) {
-				console.log(err);
+			//Add event handler on saved city li
+			$('li').on('click', function() {
+				clear();
+				let savedCity = $(this).attr('data-city');
+				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+				searchCity.unshift(savedCity);
+				//Store updated serachCity array
+				sotreSearch();
+
+				// displaySearchHistory(savedCity)
+				$.ajax({
+					url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
+					method: 'GET'
+				})
+					.then(updateCurrentWeather)
+					.catch(function(err) {
+						console.log(err);
+					});
+				$.ajax({
+					url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
+					method: 'GET'
+				})
+					.then(updateForecastPage)
+					.catch(function(err) {
+						console.log(err);
+					});
 			});
-			$.ajax({
-				url: `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&units=imperial&appid=${apiKey}`,
-				method: 'GET'
-			}).then(updateForecastPage)
-				.catch(function(err) {
-				console.log(err);
-			});
-		});
-		}	
+		}
 	}
 
-	
-	
-	
-function updateCurrentWeather(cwData) {
+	function updateCurrentWeather(cwData) {
 		let iconCode = cwData.weather[0].icon;
 		let lon = cwData.coord.lon;
 		let lat = cwData.coord.lat;
-		// Generate UI Index API URL 
+		// Generate UI Index API URL
 		let uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
 		//Making query call to get ui idenx
 		$.ajax({
 			url: uvQueryURL,
 			mathod: 'GET'
 		}).then(function(uvData) {
-			
 			let uvIndex = uvData.value;
 
 			let current = {
@@ -180,7 +179,7 @@ function updateCurrentWeather(cwData) {
 			} else {
 				uvColor = 'voilet';
 			}
-		
+
 			let currentDay = `
 			<div class="card card-panel current">
 				<h3 class="card-title" id='cityName'>${current.city}</h3>
@@ -193,22 +192,22 @@ function updateCurrentWeather(cwData) {
       </div>
 		`;
 			$('#main-display').append(currentDay);
-	})
+		});
 	}
-	
-	displayStoredCurrent()
+
+	// displayStoredCurrent();
 
 	// Use localStorage to display last searched city
 	function displayStoredCurrent() {
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		if (latestSearch !== null) {
-			searchCity[0] = latestSearch[0] 
-			currentQueryCall()
+			searchCity[0] = latestSearch[0];
+			currentQueryCall();
 		}
 	}
-	
- // 5-Day Weather Forecast 
-	
+
+	// 5-Day Weather Forecast
+
 	function updateForecastPage(wfData) {
 		for (let i = 1; i < wfData.list.length; i += 8) {
 			// Get info from response data
@@ -243,22 +242,22 @@ function updateCurrentWeather(cwData) {
 		}
 	}
 
-	displayStoredForecast() 
-	
+	// displayStoredForecast();
+
 	// Use localStorage to display last searched city
 	function displayStoredForecast() {
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		if (latestSearch !== null) {
-			searchCity[0] = latestSearch[0] 
-			forecastQueryCall()
+			searchCity[0] = latestSearch[0];
+			forecastQueryCall();
 		}
 	}
-	
-/* WARNING MESSAGES ===================================================================================================================================*/
+
+	/* WARNING MESSAGES ===================================================================================================================================*/
 	function noInputWarning() {
-	$('#warning').append('<h5 class="red-text center">"Search Field can not be empty!"</h5>')
-}
-	
+		$('#warning').append('<h5 class="red-text center">"Search Field can not be empty!"</h5>');
+	}
+
 	/* CLEAR INPUT ===================================================================================================================================*/
 
 	function clear() {
@@ -266,28 +265,23 @@ function updateCurrentWeather(cwData) {
 		$('#main-display').empty();
 	}
 
-
-
 	/* CLICK HANDLER - ACTOIN STARTS HERE 
 	=====================================================================================================================*/
 
 	$('#searchBtn').on('click', function(event) {
-
 		//Prevent form submission and page reload
 		event.preventDefault();
-		//Save user input to a variable 
+		//Save user input to a variable
 		let city = $('#cityInput').val().trim();
-		
-		// First check if there is a user input 
-		if (city !== "") {
+
+		// First check if there is a user input
+		if (city !== '') {
 			clear();
 			displaySearchHistory();
-			currentQueryCall()
-			forecastQueryCall()
+			currentQueryCall();
+			forecastQueryCall();
 		} else {
 			noInputWarning();
 		}
 	});
-
-
 });
