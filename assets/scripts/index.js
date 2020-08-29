@@ -147,7 +147,7 @@ $(document).ready(function() {
 		let lon = cwData.coord.lon;
 		let lat = cwData.coord.lat;
 		// Generate UI Index API URL
-		let uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+		let uvQueryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
 		//Making query call to get ui idenx
 		$.ajax({
 			url: uvQueryURL,
@@ -158,7 +158,7 @@ $(document).ready(function() {
 			let current = {
 				city: cwData.name,
 				date: moment().format('ddd, LL'),
-				icon: 'http://openweathermap.org/img/w/' + iconCode + '.png',
+				icon: 'https://openweathermap.org/img/w/' + iconCode + '.png',
 				temp: cwData.main.temp,
 				humidity: cwData.main.humidity,
 				windSpeed: cwData.wind.speed,
@@ -216,7 +216,7 @@ $(document).ready(function() {
 			let day = wfData.list[i].dt_txt.slice(8, 10);
 			let dates = month + '/' + day + '/' + year;
 			let iconCode = wfData.list[i].weather[0].icon;
-			let iconURL = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+			let iconURL = 'https://openweathermap.org/img/w/' + iconCode + '.png';
 			let temp = wfData.list[i].main.temp;
 			let humidity = wfData.list[i].main.humidity;
 
