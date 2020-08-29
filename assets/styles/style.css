@@ -2,6 +2,8 @@
 colors:  #ede7f6, #304ffe, #757575,  #e7f1fe
 */
 
+
+
 * {
 	box-sizing: border-box;
 }
@@ -15,15 +17,16 @@ body {
 	font-size: 16px;
 	display: flex;
   min-height: 100vh;
-  flex-direction: column;
+	flex-direction: column;
+	background-color:  #ede7f6;
 }
 
 
 main {
-    flex: 1 0 auto;
+		flex: 1 0 auto;
+		margin: 0 10px;
 	}
 	
-
 main ul li#savedCity {
 	font-size: 1.1rem;
 	line-height: 2.3rem;
@@ -35,9 +38,10 @@ main ul li#savedCity:hover {
 }
 
 #main-display .current {
-	margin: 6px;
+	margin: 10px;
 	background-image: linear-gradient(to right, #ede7f6, #304ffe);
 	background-size: cover;
+	padding-left: 2rem;
 }
 
 #main-display span#uv {
@@ -51,18 +55,26 @@ h5.forecast-title {
 
 .row .col.l5ths {
 	width: 20%;
+	margin: 0 auto;
 }
 
+.page-footer {
+	height: 40px;
+	padding-bottom: 20px;
+	font-size: x-small;
+}
+
+/* Media Query for mobile size */
+
 @media only screen and (max-width: 600px) {
+
 	header a.brand-logo {
 		font-size: 1.7rem;
 		display: inline-block;
 		width: 100%;
 	}
-
 	.row .col.l5ths {
 		width: 50%;
-		margin: 0 auto;
 	}
 
 	.card.forecast {
@@ -70,7 +82,10 @@ h5.forecast-title {
 	}
 }
 
-.page-footer {
-	height: 40px;
-	padding-bottom: 20px;
-}
+/* Media query for large tablet size  */
+@media only screen and (max-width: 925px) {
+	.forecast h4.card-title {
+		font-size: large;
+	}
+
+} 
