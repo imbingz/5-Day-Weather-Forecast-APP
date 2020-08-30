@@ -1,7 +1,8 @@
 /* 
-colors:   #ede7f6 #fff8e1, #f3e5f5,  #ccff90
- #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #6c5ef1, #fff8e1 
-*/
+colors:   #ede7f6 #fff8e1, #f3e5f5,  #ccff90, 
+ #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #651fff,#311b92, 
+ red, yellow, 
+ */
 
 body {
 	/* BOTTOM 3 FOR STICKY FOOTER  */
@@ -15,12 +16,11 @@ body {
 	flex-direction: column;
 }
 
-/*  FOR STICKY FOOTER  */
+/* NAVBAR  */
 
-main {
-	flex: 1 0 auto;
-	margin: 0 10px;
-}
+.nav-wrapper { 
+  background: linear-gradient(to right, red , yellow); 
+} 
 
 /* USER INPUT SEARCH SECTION */
 
@@ -35,7 +35,7 @@ main ul li#savedCity {
 }
 
 main ul li#savedCity:hover {
-	background-color: #ccff90;
+	background-color: #ccff90 ;
 	cursor: pointer;
 }
 
@@ -62,6 +62,10 @@ main ul li#savedCity:hover {
 	animation: fadeIn 2s ease forwards;
 }
 
+div.forecast {
+	 background: linear-gradient(to bottom right,#651fff, red, yellow ); 
+}
+
 /*  Style how weather forecast pop up to the screen  */
 @keyframes fadeIn  {
 	0% {
@@ -72,7 +76,13 @@ main ul li#savedCity:hover {
 	}
 }
 
-/* FOOTER  */
+
+/*  FOR STICKY FOOTER  */
+
+main {
+	flex: 1 0 auto;
+	margin: 0 10px;
+}
 
 .page-footer {
 	height: 40px;

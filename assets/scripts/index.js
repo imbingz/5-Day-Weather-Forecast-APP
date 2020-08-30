@@ -228,7 +228,7 @@ $(document).ready(function() {
 			// Set up HTML structure
 			let forecastDay = `
 			<div class="col s12 l5ths">
-				<div class="card card-panel forecast  deep-purple accent-2">
+				<div class="card card-panel forecast">
 					<h4 class="card-title white-text">${dates}</h4>
 					<div class="icon">
 						<img id="wicon" src="${iconURL}" alt="Weather icon">
