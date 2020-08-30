@@ -170,9 +170,9 @@ $(document).ready(function() {
 				// Check ui index and color label them
 				if (current.uv <= 2) {
 					let uvColor = '';
-					uvColor = 'green';
+					uvColor = 'green accent-3';
 				} else if (current.uv <= 5) {
-					uvColor = 'yellow';
+					uvColor = 'yellow accent-2';
 				} else if (current.uv <= 7) {
 					uvColor = 'orange';
 				} else if (current.uv <= 10) {
