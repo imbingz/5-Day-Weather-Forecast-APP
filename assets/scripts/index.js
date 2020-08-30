@@ -178,7 +178,7 @@ $(document).ready(function() {
 				} else if (current.uv <= 10) {
 					uvColor = 'red';
 				} else {
-					uvColor = 'voilet';
+					uvColor = 'purple accent-4';
 				}
 
 				//set HTML sturcture to append
