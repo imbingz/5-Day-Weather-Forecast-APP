@@ -46,7 +46,7 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 ### 4. Outcome
 * The user interface is responsive to different devices - mobile, tablets, laptops and larger screen desktops
 * The app is dynamic and functional with current and 5-day weather forecast. 
-* Utilized Local Storage to save user search histories. 
+* Utilized Local Storage to save user search histories. For the best UX and UI, I limited the saved search cities to 4. 
 
 <a name="Screenshots"></a>
 ### 5. Screenshots 
