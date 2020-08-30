@@ -19,7 +19,7 @@ body {
 /* NAVBAR  */
 
 .nav-wrapper { 
-  background: linear-gradient(to right, red , yellow); 
+  background: linear-gradient(to right, #ede7f6, #651fff, #651fff, #fff8e1); 
 } 
 
 /* USER INPUT SEARCH SECTION */
