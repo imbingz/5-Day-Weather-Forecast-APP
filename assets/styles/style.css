@@ -1,24 +1,28 @@
 /* 
 colors:   #ede7f6 #fff8e1, #f3e5f5,  #ccff90
  #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #6c5ef1, #fff8e1 
-
 */
 
 body {
+	/* BOTTOM 3 FOR STICKY FOOTER  */
 	margin: 0;
 	padding: 0;
+	background-color: #ede7f6;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-	background-color: #ede7f6;
 }
+
+/*  FOR STICKY FOOTER  */
 
 main {
 	flex: 1 0 auto;
 	margin: 0 10px;
 }
+
+/* USER INPUT SEARCH SECTION */
 
 main #search-section {
 	margin-top: 10px;
@@ -35,11 +39,14 @@ main ul li#savedCity:hover {
 	cursor: pointer;
 }
 
+/* CURRENT WERATHER DISPLAY SECTION */
+
 #main-display .current {
 	margin: 10px;
 	background-image: linear-gradient(to right, #f9fbe7, #bbdefb, #76ff03, #ffc107, #fff8e1);
 	background-size: cover;
 	padding-left: 2rem;
+	animation: fadeIn 0.8s ease forwards;
 }
 
 #main-display span#uv {
@@ -47,20 +54,34 @@ main ul li#savedCity:hover {
 	font-size: large;
 }
 
-h5.forecast-title {
-	margin: 0 8px;
-}
+/* 5-DAY FORECAST SECTION */
 
 .row .col.l5ths {
 	width: 20%;
 	margin: 0 auto;
+	animation: fadeIn 2s ease forwards;
 }
+
+/*  Style how weather forecast pop up to the screen  */
+@keyframes fadeIn  {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* FOOTER  */
 
 .page-footer {
 	height: 40px;
 	padding-bottom: 20px;
 	font-size: x-small;
 }
+
+
+/* MDIA QUERIES  */
 
 /* Media Query for mobile size */
 
