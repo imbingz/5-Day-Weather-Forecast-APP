@@ -187,9 +187,9 @@ $(document).ready(function() {
 				<h3 class="card-title" id='cityName'>${current.city}</h3>
 				<P id="date">${current.date}</p> 
 				<div><img id="wicon" src="${current.icon}" alt="Weather icon"></div>
-        <p class="temperature">Temperature: <span id="temperature">${current.temp} &deg;F</span></p>
+        <p class="temperature">Temperature : <span id="temperature">${current.temp} &deg;F</span></p>
         <p class="humidity">Humidity: <span id="humidity">${current.humidity}%</span></p>
-        <p class="windSpeed">Wind Speed: <span id="windSpeed">${current.windSpeed} MPH</span></p>
+        <p class="windSpeed">Wind Speed : <span id="windSpeed">${current.windSpeed} MPH</span></p>
         <p class="uv">UV Index: <span id="uv" class="${uvColor} white-text">${current.uv}</span></p>        
       </div>
 		`;
@@ -234,7 +234,7 @@ $(document).ready(function() {
 						<img id="wicon" src="${iconURL}" alt="Weather icon">
 					</div>
 					<p class="temperature white-text">
-						Temperature: <span id="temperature">${temp} &deg;F</span>
+						Temperature : <span id="temperature">${temp} &deg;F</span>
 					</p>
 					<p class="humidity white-text">
 						Humidity: <span id="humidity">${humidity}%</span>
