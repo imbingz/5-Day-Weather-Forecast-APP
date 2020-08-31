@@ -16,10 +16,11 @@ $(document).ready(function() {
 		// If there is exsiting stored data, update the searchCity array
 		if (latestSearch !== null) {
 			searchCity = latestSearch;
+			displayLocalStorage();
+			displayStoredCurrent();
+			displayStoredForecast();
 		}
-		displayLocalStorage();
-		displayStoredCurrent();
-		displayStoredForecast();
+		
 	}
 
 	function storeSearch() {
@@ -98,10 +99,12 @@ $(document).ready(function() {
 	function displayLocalStorage() {
 		clear();
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
-		//Use for loop to dispaly saved search cites
+		
+		// delete duplication and only keep  4 latest searches
+		latestSearch = latestSearch.slice(0, 4).filter(onlyUnique);
+		
 		if (latestSearch) {
-			// delete duplication and only keep  4 latest searches
-			latestSearch = latestSearch.slice(0, 4).filter(onlyUnique);
+			//Use for loop to dispaly saved search cites
 			for (let i = 0; i < latestSearch.length; i++) {
 				let sampleCityLi = `
 			    <li class="collection-item grey-text text-darken-1" id="savedCity" data-city="${latestSearch[i]}">${latestSearch[
@@ -111,14 +114,16 @@ $(document).ready(function() {
           `;
 				$('.collection').append(sampleCityLi);
 			}
-
+			
 			//Add event handler on saved city li
 			$('li').on('click', function() {
 				clear();
 				let savedCity = $(this).attr('data-city');
 				let apiKey = '3019514fb26959aff7eeb1e73e5aa725';
+				//Add saved city to searchCity array when user click
 				searchCity.unshift(savedCity);
-
+				//Store 
+				storeSearch();
 				//Make a call to current weather api
 				$.ajax({
 					url: `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&units=imperial&appid=${apiKey}`,
