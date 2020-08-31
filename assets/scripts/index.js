@@ -289,6 +289,7 @@ $(document).ready(function() {
 			displaySearchHistory();
 			currentQueryCall();
 			forecastQueryCall();
+			$('#cityInput').val('');
 		} else {
 			noInputWarning();
 		}
