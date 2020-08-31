@@ -60,12 +60,12 @@ https://github.com/imbingz/5-Day-Weather-Forecast-APP
 
 <a name="learned"></a>
 ### 6. Challenges & What I've Learned
-* The challeng started with UI. I wanted to try a new framwork besides Bootstrap, so I used Materialize CSS for the first time. I used 9 col for large screen to display 5 sub-divided col. I could not achieve the result with Materialize grid system, so I used css to give each sub-col 20% of the fiull width of 9-col. 
-* I know Promise.all() will be better method to use when calling multiple apis at once. However, I could not make it work in my codes when changing 2 separate ajax calls to one promise.all. 
+* The challenge started with UI. I wanted to try a new framework besides Bootstrap, so I used Materialize CSS for the first time. I used 9 col for large screen to display 5 sub-divided col. I could not achieve the result with Materialize grid system, so I used css to give each sub-col 20% of the full width of 9-col. 
+* When I researched the best way to call multiple APIs at once, it shows Promise.all() will be better method to use. However, I could not make it work in my codes when changing 2 separate ajax calls to one promise.all(). So, i stayed with ajax().then(). 
 * How to choose the right date to display for each of 5-day forecast was a challenge. After looking into the response object and some research, I noticed that open weather api records 8 times through out a day, the index 0 is for current day, index 1-8 is for the next day, index 9-17 and so on. So, let the index increase by 8 for each loop will give me what I am looking for. 
-* For best user experience, I wanted to display the latest search city history at the very top, and also I don't want to display the same city more than once. There are couple of ways to accomplish that after some research, and I chose to use array.filter() along with unshit() and indexOf(). 
+* For best user experience, I wanted to display the latest search city history at the very top, and also I don't want to display the same city more than once. There are couple of ways to accomplish that after some research, and I chose to use array.filter() along with unshift() and indexOf() from stackoverflow.com. 
 * I did not pay attention to the difference between http and https in my codes until I could not get things work on the github deployed site the same way as on my local machine. It turned out that I mixed http and https in my codes which returned as error on the deployed site. Never seize learning something new. 
-* I would like to have a different color for each forecast display card, and I tried both nth-of-child and nth-of-type, I could change the background color for the div that holds the card, but not the card itself. Would like to explore more on that in the future. 
+* I would like to have a different color for each forecast display card to capture the capricious weather conditions, and after I experimented both nth-child and nth-of-type, I could only change the background color for the div that holds the card, but not the card itself.So, at the end, I used css background linear-gradient to accomplish that. 
 
 
 
