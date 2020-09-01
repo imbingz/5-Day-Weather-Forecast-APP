@@ -1,7 +1,7 @@
 /* 
 colors:   #ede7f6 #fff8e1, #f3e5f5,  #ccff90, 
  #f9fbe7 , #bbdefb , #76ff03,  #ffc107 , #651fff,#311b92, 
- red, yellow, 
+ #f44336 , yellow, 
  */
 
 body {
@@ -19,7 +19,7 @@ body {
 /* NAVBAR  */
 
 .nav-wrapper { 
-  background: linear-gradient(to right, #ede7f6, #651fff, #651fff, #fff8e1); 
+  background: linear-gradient(to right, #ede7f6, #651fff,  #651fff, #651fff, #ede7f6); 
 } 
 
 /* USER INPUT SEARCH SECTION */
@@ -63,7 +63,7 @@ main ul li#savedCity:hover {
 }
 
 div.forecast {
-	 background: linear-gradient(to bottom right,#651fff, red, yellow ); 
+	 background: linear-gradient(to bottom right,#651fff, #f44336 ,yellow  ); 
 }
 
 /*  Style how weather forecast pop up to the screen  */
