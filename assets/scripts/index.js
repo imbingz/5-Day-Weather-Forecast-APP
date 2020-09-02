@@ -90,7 +90,7 @@ $(document).ready(function() {
 		//add city input to the start of the array
 		searchCity.unshift(city);
 		// delete duplication and only keep  4 latest searches
-		searchCity = searchCity.slice(0, 4).filter(onlyUnique);
+		searchCity = searchCity.slice(0, 5).filter(onlyUnique);
 		storeSearch();
 		displayLocalStorage();
 	}
@@ -100,8 +100,8 @@ $(document).ready(function() {
 		clear();
 		let latestSearch = JSON.parse(localStorage.getItem('latestSearch'));
 		
-		// delete duplication and only keep  4 latest searches
-		latestSearch = latestSearch.slice(0, 4).filter(onlyUnique);
+		// delete duplication and only keep  5 latest searches
+		latestSearch = latestSearch.slice(0, 5).filter(onlyUnique);
 		
 		if (latestSearch) {
 			//Use for loop to dispaly saved search cites
